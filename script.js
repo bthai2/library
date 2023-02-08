@@ -33,24 +33,62 @@ class Library {
 }
 
 function updateDisplay () {
-  console.log('container.appendChild')
+  for (const i of library.books) {
+    const book = makeElement(i)
+    container.appendChild(book)
+  }
 }
 
-function makeElement () {
+function makeElement (book) {
   const element = document.createElement('div')
   element.classList.add('book')
 
+  const div = document.createElement('div')
+  div.classList.add('top')
+
   const img = document.createElement('img')
   img.setAttribute('src', './images/book.png')
-  element.appendChild(img)
+  div.appendChild(img)
+
+  const box = document.createElement('label')
+  box.classList.add('switch')
+
+  const check = document.createElement('input')
+  check.setAttribute('type', 'checkbox')
+  check.addEventListener('change', e => {
+    if (e.target.checked) {
+      element.style.opacity = '0.4'
+    } else {
+      element.style.opacity = '1'
+    }
+  })
+
+  if (book.read) {
+    check.checked = true
+    element.style.opacity = '0.4'
+  }
+
+  box.appendChild(check)
+
+  const slider = document.createElement('span')
+  slider.classList.add('slider')
+  box.appendChild(slider)
+
+  div.appendChild(box)
+
+  element.appendChild(div)
 
   const name = document.createElement('div')
-  name.textContent = 'Title: Harry Potter'
+  name.textContent = 'Title: ' + book.title
   element.appendChild(name)
 
   const author = document.createElement('div')
-  author.textContent = 'Author: JK Rowling'
+  author.textContent = 'Author: ' + book.author
   element.appendChild(author)
+
+  const pages = document.createElement('div')
+  pages.textContent = 'Number of Pages: ' + book.pages
+  element.appendChild(pages)
 
   return element
 }
@@ -83,8 +121,8 @@ body.appendChild(addButton)
 const container = document.createElement('div')
 container.classList.add('container')
 
-const div = makeElement()
+// const div = makeElement()
 
-container.appendChild(div)
+// container.appendChild(div)
 
 body.appendChild(container)
