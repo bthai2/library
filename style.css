@@ -87,9 +87,10 @@ nav {
 .container {
 	display: flex;
 	flex-wrap: wrap;
-	width: 100%;
+	width: 100vw;
 	height: 500px;
 	padding: 0 10%;
+	gap: 16px
 }
 
 .book {
