@@ -5,6 +5,7 @@ This application creates and maintains a collection of books the user has read.
  - HTML
  - CSS
  - JavaScript
+ - eslint
  # Challenges
  - Aligning elements was a struggle at first
  # Future
